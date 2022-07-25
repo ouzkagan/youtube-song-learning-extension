@@ -19,7 +19,7 @@
 // // if url change via js
 // chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 //   // listen for messages sent from background.js
-//   console.log(request.message)  
+//   console.log(request.message)
 //   if (request.message === "tab_changed") {
 //     alert('sad')
 //     console.log('tab changed')
@@ -28,10 +28,8 @@
 //   return true
 // });
 
-
 // visible extension
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
-  console.log(msg.command)
   if (msg.command === "tab_changed") {
     init();
     return true;
@@ -51,15 +49,11 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
   return true;
 });
 
-
-
-
-
-
 const init = function () {
-  if (!window.location.href.includes('watch')){
-    return
+  if (!window.location.href.includes("watch")) {
+    return;
   }
+
   setTimeout(function () {
     // base div
     let div = document.createElement("div");
@@ -134,7 +128,7 @@ const init = function () {
 	`;
 
     document.querySelector("#related #items").prepend(div);
-
+    
     // FUNCTIONS
 
     let addLoop = document.querySelector("#addloop");
@@ -145,10 +139,9 @@ const init = function () {
       "#movie_player > div.html5-video-container > video"
     );
     let loopCounts = document.querySelector("#loopcount");
-    let breakWaits = document.querySelector("#breakwait");
 
     // ADD NEW LOOP
-    addLoop.addEventListener("click",  () => {
+    addLoop.addEventListener("click", () => {
       let loopContainersCount =
         document.querySelectorAll(".loop-container").length + 1;
       let newLoopContainer = document.createElement("div");
@@ -195,7 +188,14 @@ const init = function () {
     // track video
     let nextStartValue = "0:00";
 
+    // is extension disable by popup
+    let isExtensionActive = () => {
+      if (localStorage.getItem("youtube_song_memorizer_settings") == null) {return true}
+      return (!JSON.parse(localStorage.getItem("youtube_song_memorizer_settings")).disabled)
+    } 
+    
     activeVideo.ontimeupdate = function (e) {
+      if (isExtensionActive()==false){return;}
       if (loopRules.loopNumber == 0 || loopRules.deactivated == true) {
         return;
       }
@@ -295,10 +295,7 @@ const init = function () {
       loopRules.times = parseInt(loopCounts.value);
       loopRules.oldTimes = parseInt(loopCounts.value);
     });
-    // set wait seconds
-    document.querySelector("#breakwait").addEventListener("input", function () {
-      loopRules.waitSeconds = parseInt(breakWaits.value);
-    });
+
     document
       .querySelector("#deactivate")
       .addEventListener("click", function (e) {
@@ -360,6 +357,3 @@ const init = function () {
 };
 
 init();
-
-
-
