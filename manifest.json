@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "manifest_version": 3,
   "description": "This is a simple looping extension for Youtube music learning and song memorizing.",
-  "homepage_url": "",
+  "homepage_url": "https://github.com/ouzkagan/youtube-song-learning-extension",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
