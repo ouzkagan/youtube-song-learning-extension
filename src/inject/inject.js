@@ -118,11 +118,12 @@ const init = function () {
 				<button id="deactivate">deactivate</button>
 				<button id="closethisarea">close this area</button>
 				
-				<a href="https://twitter.com/ouzkagann" target="_blank">reach me</a>
 				<div class="x-times-container" style="padding-left:5px;">
 					Jump next loop after <input type="number" name="loopcount" id="loopcount" placeholder="5"> times
 				</div>
-				
+				<div class="break-seconds-container" style="padding-left:5px;">
+					Wait for <input type="number" name="breakwait" id="breakwait" placeholder="2"> seconds before each loop
+				</div>
 			</div>
 			<hr>
 		
@@ -147,6 +148,7 @@ const init = function () {
       "#movie_player > div.html5-video-container > video"
     );
     let loopCounts = document.querySelector("#loopcount");
+    let breakWaits = document.querySelector("#breakwait");
 
     // ADD NEW LOOP
     addLoop.addEventListener("click",  () => {
@@ -191,6 +193,7 @@ const init = function () {
       times: -1,
       oldTimes: -99,
       deactivated: false,
+      waitSeconds: 0,
     };
     // track video
     let nextStartValue = "0:00";
@@ -294,6 +297,10 @@ const init = function () {
     document.querySelector("#loopcount").addEventListener("input", function () {
       loopRules.times = parseInt(loopCounts.value);
       loopRules.oldTimes = parseInt(loopCounts.value);
+    });
+    // set wait seconds
+    document.querySelector("#breakwait").addEventListener("input", function () {
+      loopRules.waitSeconds = parseInt(breakWaits.value);
     });
     document
       .querySelector("#deactivate")
