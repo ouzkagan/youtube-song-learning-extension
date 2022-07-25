@@ -18,6 +18,31 @@
   font-size: 12.5px;
   text-decoration: none;
   color:#333;
+
+	max-width: 43%;
+    height: 32px;
+    min-width: 12px;
+    box-sizing: border-box;
+  
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    display: inline-flex;
+   
+    background-color: #606060;;
+    color: #def1ff;
+    margin: 5px;
+    text-decoration: none;
+    flex: 1 1 0px;
+    border-radius: 2px;
+    outline: none;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 2px;
+		cursor: pointer;
+}
+button:hover {
+	background-color: #707070;;
 }
 	h1 {
 		font-size: 2em;
@@ -26,8 +51,8 @@
 
 <div id="mainPopup">
 
-<button id="disableYtMemorizer">Disable/close extension</button>
-<button id="enableYtMemorizer">Enable/open extension</button>
+	<button id="enableYtMemorizer" style="color:#acd1af;">Enable extension</button>
+	<button id="disableYtMemorizer" style="color:#fd6961;">Disable extension</button>
 <script type="text/javascript" src="popup.js">
 </script>
 </div>
