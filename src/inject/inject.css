@@ -1,0 +1,118 @@
+/**
+ * Place your custom CSS styles here.
+ **/
+ #youtube-song-memorizer{
+   color: var(--yt-spec-text-primary);
+
+   /*  */
+   
+  margin: 0 0 4px 0;
+  font-family: "Roboto","Arial",sans-serif;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  font-weight: 500;
+  white-space: nowrap;
+ 
+ }
+ #youtube-song-memorizer button{
+  cursor: pointer;
+  margin: 5px;
+  padding: 3px;
+  outline: none;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  display: inline-block;
+  background-color: #efefef;
+  font-size: 12.5px;
+  text-decoration: none;
+  color:#333;
+  flex: 1 1 0px;
+
+  /* yt css */
+  height: 32px;
+  /* min-width: 12px; */
+  padding: 0 10px;
+  border-radius: 2px;
+  box-sizing: border-box;
+  outline: none;
+  /* overflow: hidden; */
+  
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* position: relative; */
+  /* display: flex;
+  flex-direction: row;
+  align-items: center;
+  display: inline-flex; */
+  font-size: var(--ytd-user-comment-font-size);
+  font-weight: var(--ytd-user-comment-font-weight);
+  line-height: var(--ytd-user-comment-line-height);
+  /* letter-spacing: var(--ytd-user-comment-letter-spacing); */
+  font-family: var(--ytd-user-comment-font-family);
+
+  /* for buttons */
+  background-color: var(--yt-spec-badge-chip-background);
+  border: 1px solid var(--yt-spec-10-percent-layer);
+  color: var(--yt-spec-text-primary);
+  padding: 0 var(--ytd-margin-3x);
+ }
+ #youtube-song-memorizer input, #youtube-song-memorizer a {
+  margin: 5px;
+  padding: 3px;
+  outline: none;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  display: inline-block;
+  background-color: #efefef;
+  font-size: 12.5px;
+  text-decoration: none;
+  color:#333;
+  flex: 1 1 0px;
+  max-width: 20%;
+
+  /* yt css */
+  height: 32px;
+  min-width: 12px;
+  padding: 0 10px;
+  border-radius: 2px;
+  box-sizing: border-box;
+  outline: none;
+  overflow: hidden;
+  
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  display: inline-flex;
+  font-size: var(--ytd-user-comment-font-size);
+  font-weight: var(--ytd-user-comment-font-weight);
+  line-height: var(--ytd-user-comment-line-height);
+  letter-spacing: var(--ytd-user-comment-letter-spacing);
+  font-family: var(--ytd-user-comment-font-family);
+
+  /* for buttons */
+  background-color: var(--yt-spec-badge-chip-background);
+  border: 1px solid var(--yt-spec-10-percent-layer);
+  color: var(--yt-spec-text-primary);
+  padding: 0 var(--ytd-margin-3x);
+}
+.loop-container {
+  display:flex;
+  align-items: center;
+}
+
+#youtube-song-memorizer input:active {
+  border:2px;
+}
+#youtube-song-memorizer .add-new-loop{
+display:flex;
+justify-content:center;
+}
+
+
