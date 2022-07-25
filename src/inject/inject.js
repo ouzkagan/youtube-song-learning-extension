@@ -121,9 +121,6 @@ const init = function () {
 				<div class="x-times-container" style="padding-left:5px;">
 					Jump next loop after <input type="number" name="loopcount" id="loopcount" placeholder="5"> times
 				</div>
-				<div class="break-seconds-container" style="padding-left:5px;">
-					Wait for <input type="number" name="breakwait" id="breakwait" placeholder="2"> seconds before each loop
-				</div>
 			</div>
 			<hr>
 		
