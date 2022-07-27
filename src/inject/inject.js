@@ -159,6 +159,7 @@ const init = function () {
         newLoopContainer,
         addLoopContainer
       );
+      syncLocalStorage()
       setFunctionsForEvents();
     });
 
@@ -261,23 +262,8 @@ const init = function () {
         activeVideo.currentTime = hmsToSecondsOnly(startValue);
       }
     };
-
-    // start and remove functions
-    function startLoopFunction(event) {
-      loopRules.loopNumber = event.target.parentNode.dataset.number;
-      // let singleLoopContainer = document.querySelector(`.loop-container-${event.target.dataset.number}`)
-      let singleLoopContainer = event.target.parentNode;
-      let startValue = singleLoopContainer.querySelector(".loop-start").value;
-      let endValue = singleLoopContainer.querySelector(".loop-end").value;
-
-      activeVideo.currentTime = hmsToSecondsOnly(startValue);
-    }
-    function removeLoopFunction(event) {
-      
-      // document.querySelector(`.loop-container-${event.target.dataset.number}`).remove()
-      event.target.parentNode.remove();
-
-      // remove from storage
+    // sync local storage with loops
+    function syncLocalStorage(){
       let loopContainers = document.querySelectorAll(".loop-container");
         const localId =
           "yt_song_memorizer_" +
@@ -297,7 +283,6 @@ const init = function () {
 
         newLoopData[localId] = [...loopData];
 
-        console.log(newLoopData)
 
         let exLocalData = localStorage.getItem("youtube_song_memorizer");
         if (exLocalData === null) {
@@ -309,6 +294,24 @@ const init = function () {
           window.localStorage["youtube_song_memorizer"] =
             JSON.stringify(dataToSave);
         }
+    }
+    // start and remove functions
+    function startLoopFunction(event) {
+      loopRules.loopNumber = event.target.parentNode.dataset.number;
+      // let singleLoopContainer = document.querySelector(`.loop-container-${event.target.dataset.number}`)
+      let singleLoopContainer = event.target.parentNode;
+      let startValue = singleLoopContainer.querySelector(".loop-start").value;
+      let endValue = singleLoopContainer.querySelector(".loop-end").value;
+
+      activeVideo.currentTime = hmsToSecondsOnly(startValue);
+    }
+    function removeLoopFunction(event) {
+      
+      // document.querySelector(`.loop-container-${event.target.dataset.number}`).remove()
+      event.target.parentNode.remove();
+
+      // remove from storage
+      syncLocalStorage()
 
     }
     function setFunctionsForEvents() {
@@ -360,37 +363,7 @@ const init = function () {
     document
       .querySelector("#youtube-song-memorizer")
       .addEventListener("focusout", function () {
-        let loopContainers = document.querySelectorAll(".loop-container");
-        const localId =
-          "yt_song_memorizer_" +
-          window.location
-            .toString()
-            .replace("https://www.youtube.com/watch?v=", "");
-
-        let loopData = [];
-        for (let i = 0; i < loopContainers.length; i++) {
-          loopData.push([
-            loopContainers[i].querySelector(".loop-start").value,
-            loopContainers[i].querySelector(".loop-end").value,
-          ]);
-        }
-
-        let newLoopData = {};
-
-        newLoopData[localId] = [...loopData];
-
-        console.log(newLoopData)
-
-        let exLocalData = localStorage.getItem("youtube_song_memorizer");
-        if (exLocalData === null) {
-          window.localStorage["youtube_song_memorizer"] = JSON.stringify({});
-        } else {
-          let parsedExLocalData = JSON.parse(exLocalData);
-
-          let dataToSave = { ...parsedExLocalData, ...newLoopData };
-          window.localStorage["youtube_song_memorizer"] =
-            JSON.stringify(dataToSave);
-        }
+        syncLocalStorage()
       });
   }, 2500);
 };
