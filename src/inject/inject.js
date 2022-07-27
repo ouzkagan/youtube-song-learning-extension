@@ -273,8 +273,46 @@ const init = function () {
       activeVideo.currentTime = hmsToSecondsOnly(startValue);
     }
     function removeLoopFunction(event) {
+      
+      console.log(event.target.parentNode.dataset.number)
       // document.querySelector(`.loop-container-${event.target.dataset.number}`).remove()
       event.target.parentNode.remove();
+      
+
+      // add remove from storage
+      let loopContainers = document.querySelectorAll(".loop-container");
+        const localId =
+          "yt_song_memorizer" +
+          window.location
+            .toString()
+            .replace("https://www.youtube.com/watch?v=", "");
+
+        let loopData = [];
+        for (let i = 0; i < loopContainers.length; i++) {
+          if(i == event.target.parentNode.dataset.number - 1) { continue}
+          loopData.push([
+            loopContainers[i].querySelector(".loop-start").value,
+            loopContainers[i].querySelector(".loop-end").value,
+          ]);
+        }
+
+        let newLoopData = {};
+
+        newLoopData[localId] = [...loopData];
+
+        console.log(newLoopData)
+
+        let exLocalData = localStorage.getItem("youtube_song_memorizer");
+        if (exLocalData === null) {
+          window.localStorage["youtube_song_memorizer"] = JSON.stringify({});
+        } else {
+          let parsedExLocalData = JSON.parse(exLocalData);
+
+          let dataToSave = { ...parsedExLocalData, ...newLoopData };
+          window.localStorage["youtube_song_memorizer"] =
+            JSON.stringify(dataToSave);
+        }
+
     }
     function setFunctionsForEvents() {
       //  set starts
@@ -321,6 +359,7 @@ const init = function () {
           "none";
       });
 
+    // send loop info to local storage
     document
       .querySelector("#youtube-song-memorizer")
       .addEventListener("focusout", function () {
@@ -340,7 +379,10 @@ const init = function () {
         }
 
         let newLoopData = {};
+
         newLoopData[localId] = [...loopData];
+
+        console.log(newLoopData)
 
         let exLocalData = localStorage.getItem("youtube_song_memorizer");
         if (exLocalData === null) {

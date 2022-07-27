@@ -20,8 +20,7 @@
     "default_popup": "src/browser_action/popup.html"
   },
   "permissions": [
-    "activeTab",
-    "cookies"
+    "activeTab"
   ],
   "content_scripts": [
     {
@@ -43,8 +42,5 @@
         "src/inject/inject.js"
       ]
     }
-  ],
-  "host_permissions": [
-    "https://*.youtube.com/*"
   ]
 }
