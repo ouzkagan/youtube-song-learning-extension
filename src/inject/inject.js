@@ -60,7 +60,7 @@ const init = function () {
 
     // check local storage
     const localId =
-      "yt_song_memorizer" +
+      "yt_song_memorizer_" +
       window.location
         .toString()
         .replace("https://www.youtube.com/watch?v=", "");
@@ -274,22 +274,19 @@ const init = function () {
     }
     function removeLoopFunction(event) {
       
-      console.log(event.target.parentNode.dataset.number)
       // document.querySelector(`.loop-container-${event.target.dataset.number}`).remove()
       event.target.parentNode.remove();
-      
 
-      // add remove from storage
+      // remove from storage
       let loopContainers = document.querySelectorAll(".loop-container");
         const localId =
-          "yt_song_memorizer" +
+          "yt_song_memorizer_" +
           window.location
             .toString()
             .replace("https://www.youtube.com/watch?v=", "");
 
         let loopData = [];
         for (let i = 0; i < loopContainers.length; i++) {
-          if(i == event.target.parentNode.dataset.number - 1) { continue}
           loopData.push([
             loopContainers[i].querySelector(".loop-start").value,
             loopContainers[i].querySelector(".loop-end").value,
@@ -365,7 +362,7 @@ const init = function () {
       .addEventListener("focusout", function () {
         let loopContainers = document.querySelectorAll(".loop-container");
         const localId =
-          "yt_song_memorizer" +
+          "yt_song_memorizer_" +
           window.location
             .toString()
             .replace("https://www.youtube.com/watch?v=", "");
